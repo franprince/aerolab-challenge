@@ -1,0 +1,45 @@
+.sortingTools {
+  display: flex;
+  align-items: center;
+  .active {
+    background-color: #0ad4fa;
+    color: #ffffff;
+  }
+  button {
+    height: 42px;
+    width: 218px;
+    border: 0;
+    border-radius: 20px;
+    background-color: #ededed;
+    color: #979797;
+    font-size: 24px;
+    padding: 0 2rem;
+    margin: 0 2rem 0 0;
+  }
+  .productIndex {
+    font-size: 24px;
+    color: #616161;
+    padding-right: 1.5rem;
+    margin: 0.5rem 0;
+  }
+  .sortBy {
+    font-size: 24px;
+    color: #a3a3a3;
+    padding: 0 1.5rem;
+  }
+  .indexContainer {
+    border-right: 1px solid #d9d9d9;
+  }
+  @media only screen and (max-width: 600px) {
+    flex-direction: column;
+    .indexContainer {
+      border: none;
+    }
+    .productIndex {
+      padding: 0;
+    }
+    button {
+      margin: 0 0 2rem 0;
+    }
+  }
+}

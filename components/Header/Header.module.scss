@@ -1,0 +1,19 @@
+.header {
+  position: relative;
+  height: 450px;
+  width: 100%;
+  h1 {
+    position: absolute;
+    left: 15rem;
+    bottom: 1rem;
+    z-index: 999;
+    font-size: 64px;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  @media only screen and (max-width: 600px) {
+    h1 {
+      left: 1rem;
+    }
+  }
+}
