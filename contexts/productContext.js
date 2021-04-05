@@ -1,7 +1,7 @@
 import React from "react";
 
 function productReducer(state, action) {
-  const { type } = action;
+  const { type, payload } = action;
   const { defaultData } = state;
   switch (type) {
     case "SORT_MOST_RECENT":
@@ -10,7 +10,6 @@ function productReducer(state, action) {
       const sortedByLowestPrice = [...defaultData].sort(
         (a, b) => a.cost - b.cost
       );
-      console.log(sortedByLowestPrice);
       return {
         ...state,
         sortedBy: "lowestPrice",
@@ -25,16 +24,16 @@ function productReducer(state, action) {
         sortedBy: "highestPrice",
         sortedData: sortedByHighestPrice,
       };
-    case "UPDATED_DATA":
-      return { ...action.payload };
-    case "ERROR_FETCHING":
-      return { ...action.payload };
+    case "INIT":
+      return {
+        ...state,
+        ...payload,
+      };
     default:
       throw Error("This action is not declared.");
   }
 }
-
-export async function getProducts() {
+async function getProducts() {
   try {
     const fetchProducts = await fetch(
       "https://coding-challenge-api.aerolab.co/products",
@@ -45,12 +44,19 @@ export async function getProducts() {
       }
     );
     const products = await fetchProducts.json();
-    return products;
+    return {
+      sortedBy: "mostRecent",
+      sortedData: products,
+      defaultData: products,
+      status: "fullfilled",
+    };
   } catch (error) {
-    return error;
+    return {
+      status: "rejected",
+      error: error,
+    };
   }
 }
-
 export const productContext = React.createContext(null);
 
 export const ProductContextProvider = ({ children }) => {
@@ -59,27 +65,16 @@ export const ProductContextProvider = ({ children }) => {
     error: "",
     defaultData: null,
     sortedData: null,
-    sortedBy: "mostRecent",
+    sortedBy: null,
   });
   React.useEffect(() => {
-    getProducts()
-      .then((products) =>
-        dispatch({
-          type: "UPDATED_DATA",
-          payload: {
-            ...state,
-            sortedData: products,
-            defaultData: products,
-            status: "fullfilled",
-          },
-        })
-      )
-      .catch((error) =>
-        dispatch({
-          type: "ERROR_FETCHING",
-          payload: { ...state, status: "rejected", error: error },
-        })
-      );
+    getProducts().then((products) =>
+      dispatch({
+        payload: products,
+        type: "INIT",
+      })
+    );
+    console.log(state);
   }, []);
   return (
     <productContext.Provider value={{ state, dispatch }}>

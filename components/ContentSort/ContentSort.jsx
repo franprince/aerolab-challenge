@@ -1,5 +1,6 @@
 import React from "react";
 import { productContext } from "../../contexts/productContext";
+import ItemIndex from "../ItemIndex/ItemIndex";
 import styles from "./ContentSort.module.scss";
 
 function ContentSort() {
@@ -7,24 +8,24 @@ function ContentSort() {
 
   return (
     <div className={styles.sortingTools}>
-      <div className={styles.indexContainer} my-value>
-        <p className={styles.productIndex}>16 of 32 products</p>
-      </div>
+      <ItemIndex />
       <p className={styles.sortBy}>Sort by:</p>
       <button
-        className={state.sortedBy === "mostRecent" && styles.active}
+        className={state.sortedBy === "mostRecent" ? styles.active : undefined}
         onClick={() => dispatch({ type: "SORT_MOST_RECENT" })}
       >
         Most recent
       </button>
       <button
-        className={state.sortedBy === "lowestPrice" && styles.active}
+        className={state.sortedBy === "lowestPrice" ? styles.active : undefined}
         onClick={() => dispatch({ type: "SORT_LOWEST_PRICE" })}
       >
         Lowest price
       </button>
       <button
-        className={state.sortedBy === "highestPrice" && styles.active}
+        className={
+          state.sortedBy === "highestPrice" ? styles.active : undefined
+        }
         onClick={() => dispatch({ type: "SORT_HIGHEST_PRICE" })}
       >
         Highest price

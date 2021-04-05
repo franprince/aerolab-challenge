@@ -33,6 +33,23 @@
     height: 44px;
     transition: 500ms ease-in-out;
   }
+  .needMorePoints {
+    font-size: 14px;
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    z-index: 1000;
+    padding: 0 1rem;
+    background: rgba(97, 97, 97, 0.8);
+    color: #ffffff;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    p {
+      padding-right: 0.3rem;
+    }
+  }
   .cardHidden {
     position: absolute;
     width: 100%;
@@ -58,6 +75,14 @@
       background-color: #ffffff;
       color: #616161;
       font-size: 18px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    button:disabled {
+      &:hover {
+        cursor: not-allowed;
+      }
     }
   }
   .cardHiddenContainer {

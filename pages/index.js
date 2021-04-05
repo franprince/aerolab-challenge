@@ -5,52 +5,26 @@ import Header from "../components/Header/Header";
 import GridLayout from "../components/GridLayout/GridLayout";
 import ContentSort from "../components/ContentSort/ContentSort";
 import { ProductContextProvider } from "../contexts/productContext";
-export default function Home({ products, user }) {
+import { UserContextProvider } from "../contexts/userContext";
+export default function Home() {
   return (
     <div>
-      <ProductContextProvider>
-        <Head>
-          <title>Aerolab rewards program</title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
+      <UserContextProvider>
+        <ProductContextProvider>
+          <Head>
+            <title>Aerolab rewards program</title>
+            <link rel="icon" href="/favicon.ico" />
+          </Head>
 
-        <main className={styles.main}>
-          <Top userData={user} />
-          <Header />
-          <div className={styles.container}>
-            <ContentSort />
-            <GridLayout products={products} />
-          </div>
-        </main>
-      </ProductContextProvider>
+          <main className={styles.main}>
+            <Top />
+            <Header />
+            <div className={styles.container}>
+              <GridLayout />
+            </div>
+          </main>
+        </ProductContextProvider>
+      </UserContextProvider>
     </div>
   );
-}
-export async function getStaticProps() {
-  const fetchProducts = await fetch(
-    "https://coding-challenge-api.aerolab.co/products",
-    {
-      headers: {
-        Authorization: `Bearer ${process.env.TOKEN}`,
-      },
-    }
-  );
-  const products = await fetchProducts.json();
-  const fetchUser = await fetch(
-    "https://coding-challenge-api.aerolab.co/user/me",
-    {
-      headers: {
-        Authorization: `Bearer ${process.env.TOKEN}`,
-      },
-    }
-  );
-  const user = await fetchUser.json();
-
-  return {
-    props: {
-      products,
-      user,
-    },
-    revalidate: 1,
-  };
 }

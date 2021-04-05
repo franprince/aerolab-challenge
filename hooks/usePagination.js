@@ -1,17 +1,57 @@
 import React from "react";
 
-function reducer(state, action) {}
+const nextPageAvailable = (currentPage, itemsPerPage, totalItems) =>
+  Math.ceil(totalItems - currentPage * itemsPerPage > 0);
+const prevPageAvailable = (currentPage) => currentPage > 1;
 
-function usePagination({ data = [], initialItemsPerPage = 0 }) {
-  const [itemsPerPage, setItemsPerPage] = React.useState(initialItemsPerPage);
-  const [pageData, setPageData] = React.useState(() =>
-    data.slice(itemsPerPage)
-  );
-  const [state, dispatch] = React.useReducer(reducer, { data: data });
+function init(totalItems, itemsPerPage, itemsTotal) {
   return {
-    data: pageData,
-    totalItems: data.length,
+    totalItems: totalItems,
+    currentPage: 1,
+    prevPageAvailable: false,
+    nextPageAvailable: nextPageAvailable(currentPage, itemsPerPage, itemsTotal),
   };
+}
+
+function reducer(state, action) {
+  const { type, payload } = action;
+  switch (type) {
+    case "NEXT_PAGE":
+      return {
+        ...state,
+        currentPage: currentPage + 1,
+        nextPageAvailable: nextPageAvailable(
+          payload.currentPage,
+          payload.itemsPerPage,
+          payload.totalItems
+        ),
+        prevPageAvailable: prevPageAvailable(payload.currentPage),
+      };
+    case "PREV_PAGE":
+      return {
+        ...state,
+        currentPage: currentPage - 1,
+        nextPageAvailable: nextPageAvailable(
+          payload.currentPage,
+          payload.itemsPerPage,
+          payload.totalItems
+        ),
+        prevPageAvailable: prevPageAvailable(payload.currentPage),
+      };
+    default:
+      throw Error(`The action ${type} is not valid.`);
+  }
+}
+
+function usePagination(totalItems = 0, itemsPerPage = 0) {
+  const [paginationState, paginationDispatch] = React.useReducer(reducer, {
+    totalItems: null,
+    currentPage: 1,
+    prevPageAvailable: false,
+    nextPageAvailable: false,
+  });
+
+  return [paginationState, paginationDispatch];
 }
 
 export default usePagination;
