@@ -3,7 +3,6 @@ import styles from "../styles/Home.module.scss";
 import Top from "../components/Top/Top";
 import Header from "../components/Header/Header";
 import GridLayout from "../components/GridLayout/GridLayout";
-import ContentSort from "../components/ContentSort/ContentSort";
 import { ProductContextProvider } from "../contexts/productContext";
 import { UserContextProvider } from "../contexts/userContext";
 export default function Home() {

@@ -1,4 +1,5 @@
 import React from "react";
+import getProducts from "../utils/getProducts";
 
 function productReducer(state, action) {
   const { type, payload } = action;
@@ -24,57 +25,54 @@ function productReducer(state, action) {
         sortedBy: "highestPrice",
         sortedData: sortedByHighestPrice,
       };
-    case "INIT":
+    case "GET_PRODUCTS":
+      return {
+        ...state,
+        ...payload,
+      };
+    case "GET_PRODUCTS_SUCCESS":
+      return {
+        ...state,
+        ...payload,
+      };
+    case "GET_PRODUCTS_FAIL":
       return {
         ...state,
         ...payload,
       };
     default:
-      throw Error("This action is not declared.");
+      throw Error(`The action ${type} is not declared.`);
   }
 }
-async function getProducts() {
-  try {
-    const fetchProducts = await fetch(
-      "https://coding-challenge-api.aerolab.co/products",
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.TOKEN}`,
-        },
-      }
-    );
-    const products = await fetchProducts.json();
-    return {
-      sortedBy: "mostRecent",
-      sortedData: products,
-      defaultData: products,
-      status: "fullfilled",
-    };
-  } catch (error) {
-    return {
-      status: "rejected",
-      error: error,
-    };
-  }
-}
+
 export const productContext = React.createContext(null);
 
 export const ProductContextProvider = ({ children }) => {
   const [state, dispatch] = React.useReducer(productReducer, {
-    status: "pending",
+    status: null,
     error: "",
     defaultData: null,
     sortedData: null,
     sortedBy: null,
   });
   React.useEffect(() => {
-    getProducts().then((products) =>
-      dispatch({
-        payload: products,
-        type: "INIT",
-      })
-    );
-    console.log(state);
+    dispatch({
+      payload: { status: "pending" },
+      type: "GET_PRODUCTS",
+    });
+    getProducts()
+      .then((response) =>
+        dispatch({
+          payload: { ...response },
+          type: "GET_PRODUCTS_SUCCESS",
+        })
+      )
+      .catch((error) =>
+        dispatch({
+          payload: { ...error },
+          type: "GET_PRODUCTS_FAIL",
+        })
+      );
   }, []);
   return (
     <productContext.Provider value={{ state, dispatch }}>

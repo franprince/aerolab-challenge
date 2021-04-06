@@ -11,6 +11,12 @@ class MyDocument extends Document {
       <Html>
         <Head>
           <link
+            rel="icon"
+            href="/favicon.svg"
+            type="image/svg+xml"
+            sizes="any"
+          />
+          <link
             rel="preconnect"
             href="https://fonts.gstatic.com"
             crossOrigin="true"

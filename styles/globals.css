@@ -16,3 +16,6 @@ a {
 button {
   outline: none;
 }
+.swal2-actions {
+  justify-content: space-evenly !important;
+}

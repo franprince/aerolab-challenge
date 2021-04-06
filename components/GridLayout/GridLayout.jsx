@@ -8,37 +8,6 @@ import usePagination from "../../hooks/usePagination";
 function GridLayout() {
   const { state, dispatch } = React.useContext(productContext);
 
-  React.useEffect(() => {
-    const init = async () => {
-      try {
-        const fetchProducts = await fetch(
-          "https://coding-challenge-api.aerolab.co/products",
-          {
-            headers: {
-              Authorization: `Bearer ${process.env.TOKEN}`,
-            },
-          }
-        );
-        const products = await fetchProducts.json();
-        return {
-          sortedBy: "mostRecent",
-          sortedData: products,
-          defaultData: products,
-          status: "fullfilled",
-        };
-      } catch (error) {
-        return {
-          status: "rejected",
-          error: error,
-        };
-      }
-    };
-    dispatch({
-      payload: init(),
-      type: "INIT",
-    });
-    console.log(state);
-  }, []);
   const totalItems = state.sortedData && state.sortedData.length;
   const [paginationState, paginationDispatch] = usePagination(totalItems, 16);
   return (

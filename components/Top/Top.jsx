@@ -4,8 +4,7 @@ import Image from "next/image";
 import { userContext } from "../../contexts/userContext";
 
 function Top() {
-  const { data, setData } = React.useContext(userContext);
-  console.log(data);
+  const { userData, userDispatch } = React.useContext(userContext);
   return (
     <div className={styles.top}>
       <div className={styles.logo}>
@@ -14,12 +13,16 @@ function Top() {
       <div style={{ display: "flex", alignItems: "center" }}>
         <div className={styles.name}>
           <p>
-            {data.status === "fullfilled" ? data.userData.name : "Loading..."}
+            {userData.status === "fullfilled"
+              ? userData.userData.name
+              : "Loading..."}
           </p>
         </div>
         <div className={styles.cointainer}>
           <p>
-            {data.status === "fullfilled" ? data.userData.points : "Loading..."}
+            {userData.status === "fullfilled"
+              ? userData.userData.points
+              : "Loading..."}
           </p>
           <Image src="/icons/coin.svg" height={34} width={34} />{" "}
         </div>

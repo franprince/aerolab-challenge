@@ -1722,6 +1722,16 @@ supports-color@^8.0.0:
   dependencies:
     has-flag "^4.0.0"
 
+sweetalert2-react-content@^3.3.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/sweetalert2-react-content/-/sweetalert2-react-content-3.3.1.tgz#2e0367bca36a5c0bfcc381a1b5fa90a51b35fff7"
+  integrity sha512-wg26qMZdH9a99Rd/6CMH85CKClfYYy6zI41tsN40tsbP4gTHO4zhITbp9y2TTytboFSH2DgKsJzuuEvPikWJtA==
+
+sweetalert2@^10.15.7:
+  version "10.15.7"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-10.15.7.tgz#ad4c8f08432952d3283adbaa9a309c534f5a863d"
+  integrity sha512-imY0MR03NGefPcGzSYjWYz1GMIlniusEBXilswvKrHD/GMiTxA5jnsdjtK2IoRyXfEaqV7GWt6DM4YVjAZU8gw==
+
 timers-browserify@2.0.12, timers-browserify@^2.0.4:
   version "2.0.12"
   resolved "https://registry.yarnpkg.com/timers-browserify/-/timers-browserify-2.0.12.tgz#44a45c11fbf407f34f97bccd1577c652361b00ee"

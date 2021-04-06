@@ -1,5 +1,6 @@
 import React from "react";
 import { productContext } from "../../contexts/productContext";
+import IndexArrows from "../IndexArrows/IndexArrows";
 import ItemIndex from "../ItemIndex/ItemIndex";
 import styles from "./ContentSort.module.scss";
 
@@ -30,6 +31,7 @@ function ContentSort() {
       >
         Highest price
       </button>
+      <IndexArrows />
     </div>
   );
 }

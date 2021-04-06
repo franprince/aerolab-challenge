@@ -1,41 +1,60 @@
 import React from "react";
+import getUserData from "../utils/getUserData";
 
-export async function getUserData() {
-  try {
-    const fetchUserData = await fetch(
-      "https://coding-challenge-api.aerolab.co/user/me",
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.TOKEN}`,
-        },
-      }
-    );
-    const userData = await fetchUserData.json();
-    return userData;
-  } catch (error) {
-    return error;
+function userReducer(state, action) {
+  const { type, payload } = action;
+  switch (type) {
+    case "GET_USER":
+      return {
+        ...state,
+        ...payload,
+      };
+    case "GET_USER_SUCCESS":
+      return {
+        ...state,
+        ...payload,
+      };
+    case "GET_USER_FAIL":
+      return {
+        ...state,
+        ...payload,
+      };
+    default:
+      throw Error(`The action ${type} is not declared.`);
   }
 }
+
 export const userContext = React.createContext(null);
 
 export const UserContextProvider = ({ children }) => {
-  const [data, setData] = React.useState({
+  const [userData, userDispatch] = React.useReducer(userReducer, {
     status: "pending",
     error: "",
     userData: null,
   });
 
   React.useEffect(() => {
-    setData({ ...data, status: "pending" });
+    userDispatch({
+      payload: { status: "pending" },
+      type: "GET_USER",
+    });
     getUserData()
-      .then((user) =>
-        setData({ ...data, userData: user, status: "fullfilled" })
+      .then((response) =>
+        userDispatch({
+          payload: { ...response },
+          type: "GET_USER_SUCCESS",
+        })
       )
-      .catch((error) => setData({ ...data, status: "rejected", error: error }));
+      .catch((error) =>
+        userDispatch({
+          payload: { ...error },
+          type: "GET_USER_FAIL",
+        })
+      );
   }, []);
 
   return (
-    <userContext.Provider value={{ data, setData }}>
+    <userContext.Provider value={{ userData, userDispatch }}>
       {children}
     </userContext.Provider>
   );
