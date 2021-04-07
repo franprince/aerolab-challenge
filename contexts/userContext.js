@@ -1,5 +1,6 @@
 import React from "react";
 import getUserData from "../utils/getUserData";
+import updateUserContext from "../utils/updateUserContext";
 
 function userReducer(state, action) {
   const { type, payload } = action;
@@ -34,23 +35,7 @@ export const UserContextProvider = ({ children }) => {
   });
 
   React.useEffect(() => {
-    userDispatch({
-      payload: { status: "pending" },
-      type: "GET_USER",
-    });
-    getUserData()
-      .then((response) =>
-        userDispatch({
-          payload: { ...response },
-          type: "GET_USER_SUCCESS",
-        })
-      )
-      .catch((error) =>
-        userDispatch({
-          payload: { ...error },
-          type: "GET_USER_FAIL",
-        })
-      );
+    updateUserContext(userDispatch);
   }, []);
 
   return (

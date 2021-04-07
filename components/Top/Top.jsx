@@ -8,15 +8,24 @@ function Top() {
   return (
     <div className={styles.top}>
       <div className={styles.logo}>
-        <Image src="/aerolab-logo.svg" height={39} width={36} />
+        <a href="/" aria-label="Go to homepage">
+          <Image
+            src="/aerolab-logo.svg"
+            alt="Aerolab's logo"
+            height={39}
+            width={36}
+          />
+        </a>
       </div>
       <div style={{ display: "flex", alignItems: "center" }}>
         <div className={styles.name}>
-          <p>
-            {userData.status === "fullfilled"
-              ? userData.userData.name
-              : "Loading..."}
-          </p>
+          <a href="/profile" aria-label="Go to user profile">
+            <p>
+              {userData.status === "fullfilled"
+                ? userData.userData.name
+                : "Loading..."}
+            </p>
+          </a>
         </div>
         <div className={styles.cointainer}>
           <p>

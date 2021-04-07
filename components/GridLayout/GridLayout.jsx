@@ -6,18 +6,27 @@ import ContentSort from "../ContentSort/ContentSort";
 import usePagination from "../../hooks/usePagination";
 
 function GridLayout() {
+  const [totalItems, setTotalItems] = React.useState(0);
   const { state, dispatch } = React.useContext(productContext);
+  const [paginationState, paginationDispatch] = usePagination(
+    totalItems,
+    16,
+    state.sortedData
+  );
+  React.useEffect(() => {
+    if (state.sortedData) {
+      setTotalItems(state.sortedData.length);
+    }
+  }, [state.sortedData]);
 
-  const totalItems = state.sortedData && state.sortedData.length;
-  const [paginationState, paginationDispatch] = usePagination(totalItems, 16);
   return (
     <>
       <ContentSort totalItems={paginationState.totalItems} />
       <div className={styles.container}>
         <div className={styles.gridLayout}>
           {state.status === "fullfilled"
-            ? state.sortedData &&
-              state.sortedData.map((product) => (
+            ? paginationState.pageArray &&
+              paginationState.pageArray.map((product) => (
                 <Card key={product._id} product={product} />
               ))
             : "Loading..."}

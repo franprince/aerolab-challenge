@@ -11,13 +11,16 @@ export default function Home() {
       <UserContextProvider>
         <ProductContextProvider>
           <Head>
-            <title>Aerolab rewards program</title>
-            <link rel="icon" href="/favicon.ico" />
+            <title>Aerolab rewards program - Home</title>
           </Head>
 
           <main className={styles.main}>
             <Top />
-            <Header />
+            <Header
+              imgUrl="/header-x1.png"
+              title="Electronics"
+              backgroundPosition="right"
+            />
             <div className={styles.container}>
               <GridLayout />
             </div>

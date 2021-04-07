@@ -1,36 +1,33 @@
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import redeemProducts from "./redeemProduct";
+import addPoints from "./addPoints";
 import updateUserContext from "./updateUserContext";
 
-function fireRedeemProductNotification(props, productId, userDispatch) {
+function fireAddPointsNotification(props, amount, userDispatch) {
   const MySwal = withReactContent(Swal);
   MySwal.fire({
     title: "",
     text: "",
-    imageUrl: "",
-    imageWidth: 252,
-    imageHeight: 182,
-    imageAlt: "",
     showCancelButton: true,
     cancelButtonColor: "#dc3545",
     confirmButtonColor: "#28a745",
-    confirmButtonText: "Redeem",
+    confirmButtonText: "Add",
     ...props,
   }).then((result) => {
     if (result.isConfirmed) {
-      redeemProducts(productId)
+      debugger;
+      addPoints(amount)
         .then((response) => {
           if (!response.error) {
             const message =
-              response.message === "You've redeem the product successfully"
-                ? "You have redeemed the product successfully"
+              response.message === "Points Updated"
+                ? `${amount} points were added to your wallet`
                 : response.message;
-            MySwal.fire("Congratulations!", message, "success");
+            MySwal.fire("Awesome!", message, "success");
           } else {
             const message =
-              response.error === "User don't have enogh points"
-                ? "You don't have enough points"
+              response.error === "Enter a Valid Amount."
+                ? "You tried to add an invalid amount"
                 : response.error;
             MySwal.fire("OOPS!", message, "error");
           }
@@ -43,4 +40,4 @@ function fireRedeemProductNotification(props, productId, userDispatch) {
   });
 }
 
-export default fireRedeemProductNotification;
+export default fireAddPointsNotification;

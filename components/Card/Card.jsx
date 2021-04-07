@@ -2,8 +2,6 @@ import React from "react";
 import styles from "./Card.module.scss";
 import Image from "next/image";
 import { userContext } from "../../contexts/userContext";
-import redeemProducts from "../../utils/redeemProduct";
-import getUserData from "../../utils/getUserData";
 import fireRedeemProductNotification from "../../utils/fireRedeemProductNotification";
 
 function Card({ product }) {

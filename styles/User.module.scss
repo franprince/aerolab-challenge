@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  padding: 3rem 15rem;
+  background-color: #f9f9f9;
+  @media only screen and (max-width: 600px) {
+    padding: 3rem 3rem;
+  }
+}
+.historyTable {
+  border: solid thin;
+  border-collapse: collapse;
+  text-align: center;
+  td,
+  th {
+    padding: 1rem 2.5rem;
+    border: 1px solid rgba(34, 36, 38, 0.15);
+  }
+}

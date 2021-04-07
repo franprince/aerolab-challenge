@@ -1,17 +1,18 @@
 import styles from "./Header.module.scss";
 import Image from "next/image";
 
-function Header() {
+function Header({ imgUrl, title, backgroundPosition }) {
   return (
     <div className={styles.header}>
-      <h1 className={styles.title}>Electronics</h1>
+      <h1 className={styles.title}>{title}</h1>
       <Image
-        src="/header-x1.png"
+        src={imgUrl}
         alt="Electronics"
         layout="fill"
         objectFit="cover"
-        objectPosition="right"
+        objectPosition={backgroundPosition}
         loading="eager"
+        quality={95}
       />
     </div>
   );
