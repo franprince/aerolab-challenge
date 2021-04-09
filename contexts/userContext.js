@@ -1,5 +1,4 @@
 import React from "react";
-import getUserData from "../utils/getUserData";
 import updateUserContext from "../utils/updateUserContext";
 
 function userReducer(state, action) {
@@ -21,11 +20,11 @@ function userReducer(state, action) {
         ...payload,
       };
     default:
-      throw Error(`The action ${type} is not declared.`);
+      throw new Error(`The action ${type} is not declared.`);
   }
 }
 
-export const userContext = React.createContext(null);
+export const userContext = React.createContext({});
 
 export const UserContextProvider = ({ children }) => {
   const [userData, userDispatch] = React.useReducer(userReducer, {

@@ -11,11 +11,10 @@ function fireAddPointsNotification(props, amount, userDispatch) {
     showCancelButton: true,
     cancelButtonColor: "#dc3545",
     confirmButtonColor: "#28a745",
-    confirmButtonText: "Add",
+    confirmButtonText: "Confirm",
     ...props,
   }).then((result) => {
     if (result.isConfirmed) {
-      debugger;
       addPoints(amount)
         .then((response) => {
           if (!response.error) {

@@ -41,7 +41,7 @@ function productReducer(state, action) {
         ...payload,
       };
     default:
-      throw Error(`The action ${type} is not declared.`);
+      throw new Error(`The action ${type} is not declared.`);
   }
 }
 

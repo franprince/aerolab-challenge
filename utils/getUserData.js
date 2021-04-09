@@ -9,9 +9,13 @@ async function getUserData() {
       }
     );
     const userData = await fetchUserData.json();
-    return { status: "fullfilled", userData: userData };
+    if (fetchUserData.ok) {
+      return { status: "fullfilled", userData: userData };
+    } else {
+      return { status: "rejected", error: error };
+    }
   } catch (error) {
-    return { status: "rejected", error: error };
+    console.error(error);
   }
 }
 

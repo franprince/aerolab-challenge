@@ -8,8 +8,14 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html>
+      <Html lang="en">
         <Head>
+          <meta
+            name="description"
+            content="
+            With the Aerolab rewards program you can exchange your Aerolab
+            points for awesome rewards"
+          />
           <link
             rel="icon"
             href="/favicon.svg"

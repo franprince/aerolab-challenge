@@ -1,0 +1,24 @@
+.container {
+  .gridLayout {
+    padding: 2rem 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px 20px;
+    border-top: 1px solid #d9d9d9;
+  }
+  .loading {
+    display: flex;
+    justify-content: center;
+  }
+}
+.paginationButton {
+  border: none;
+  background: none;
+  border-radius: 50%;
+  &:hover {
+    cursor: pointer;
+  }
+  &:disabled:hover {
+    cursor: not-allowed;
+  }
+}

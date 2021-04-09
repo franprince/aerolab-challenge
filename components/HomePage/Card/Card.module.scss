@@ -1,0 +1,123 @@
+.cardContainer {
+  min-height: 280px;
+  display: flex;
+  justify-content: center;
+  background-color: #ffffff;
+  transition: background-color 500ms;
+  transition: transform 500ms;
+  position: relative;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  &:hover {
+    filter: drop-shadow(10px 10px 15px rgba(0, 0, 0, 0.3));
+    -webkit-filter: drop-shadow(10px 10px 15px rgba(0, 0, 0, 0.3));
+    -moz-filter: drop-shadow(10px 10px 15px rgba(0, 0, 0, 0.3));
+    -ms-filter: drop-shadow(10px 10px 15px rgba(0, 0, 0, 0.3));
+    -o-filter: drop-shadow(10px 10px 15px rgba(0, 0, 0, 0.3));
+    transform: translate(0, -10px);
+    .cardHidden {
+      background: linear-gradient(
+        180deg,
+        rgba(10, 212, 250, 0.86) 0%,
+        rgba(37, 187, 241, 0.86) 100%
+      );
+      opacity: 1;
+    }
+    .buy {
+      background: url(/icons/buy-white.svg) no-repeat;
+    }
+  }
+  .buy {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    z-index: 1000;
+    padding: 0 -1.5rem;
+    background: url(/icons/buy-blue.svg) no-repeat;
+    width: 44px;
+    height: 44px;
+  }
+  .needMorePoints {
+    font-size: 14px;
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    z-index: 1000;
+    padding: 0 1rem;
+    background: rgba(97, 97, 97, 0.8);
+    color: #ffffff;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    p {
+      padding-right: 0.3rem;
+    }
+  }
+  .cardHidden {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    z-index: 999;
+    transition: 0.3s ease-in;
+    p {
+      font-size: 36px;
+      color: #ffffff;
+      transition: all 0ms;
+      text-align: center;
+    }
+    button {
+      height: 42px;
+      width: 218px;
+      border: 0;
+      border-radius: 20px;
+      background-color: #ffffff;
+      color: #616161;
+      font-size: 18px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    button:disabled {
+      &:hover {
+        cursor: not-allowed;
+      }
+    }
+  }
+  .cardHiddenContainer {
+    display: flex;
+    align-items: center;
+    img {
+      margin-left: 0.5rem;
+    }
+  }
+  .card {
+    position: relative;
+    width: 100%;
+    padding: 0 1.5rem;
+    z-index: 100;
+
+    .imageContainer {
+      display: flex;
+      justify-content: center;
+    }
+    .infoContainer {
+      border-top: 1px solid #d9d9d9;
+      padding: 1.5rem 0;
+    }
+    .category {
+      font-size: 16px;
+      color: #a3a3a3;
+      margin: 0.2rem 0;
+    }
+    .name {
+      font-size: 18px;
+      color: #616161;
+      margin: 0.2rem 0;
+    }
+  }
+}
