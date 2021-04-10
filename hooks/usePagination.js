@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 
 const startItem = (currentPage, itemsPerPage) =>
   currentPage === 1 ? 0 : (currentPage - 1) * itemsPerPage;
@@ -72,7 +72,7 @@ function reducer(state, action) {
       return {
         ...state,
         currentPage: 1,
-        firstItem: 1,
+        firstItem: 0,
         lastItem:
           startItem(1, action.payload.itemsPerPage) +
           action.payload.itemsPerPage -

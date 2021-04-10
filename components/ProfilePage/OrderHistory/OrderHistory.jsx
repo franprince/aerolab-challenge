@@ -1,53 +1,35 @@
 import styles from "./OrderHistory.module.scss";
-import React from "react";
+import * as React from "react";
 import getOrderHistory from "../../../utils/getOrderHistory";
+import usePagination from "../../../hooks/usePagination";
+import ItemIndex from "../../HomePage/ItemIndex/ItemIndex";
+import IndexButtons from "../../HomePage/ItemIndex/IndexButtons";
 
 function OrderHistory() {
-  const itemsPerPage = 12;
   const [orderHistory, setOrderHistory] = React.useState(null);
-  const [currentPage, setCurrentPage] = React.useState(1);
   React.useEffect(() => {
     getOrderHistory().then((response) => {
       setOrderHistory(response);
     });
   }, []);
-
-  const startItem = currentPage === 1 ? 0 : (currentPage - 1) * itemsPerPage;
+  const itemsPerPage = 12;
+  const totalItems = orderHistory && orderHistory.orderHistory.length;
+  const { paginationState, paginationDispatch } = usePagination(
+    itemsPerPage,
+    totalItems
+  );
 
   const orderHistorySlice =
     orderHistory &&
     [...orderHistory.orderHistory]
       .reverse()
-      .slice(startItem, startItem + itemsPerPage);
-
-  const Index = () => {
-    const totalItems = orderHistory && orderHistory.orderHistory.length;
-    const getStartItem = startItem + 1;
-    const getLastItem =
-      startItem + itemsPerPage > totalItems
-        ? totalItems
-        : startItem + itemsPerPage;
-
-    return (
-      orderHistory && <p>{`${getStartItem}-${getLastItem} of ${totalItems}`}</p>
-    );
-  };
-
-  function handleNext() {
-    const totalItems = orderHistory.orderHistory.length;
-    if (startItem + itemsPerPage >= totalItems) return;
-    setCurrentPage(currentPage + 1);
-  }
-  function handlePrev() {
-    if (currentPage === 1) return;
-    setCurrentPage(currentPage - 1);
-  }
+      .slice(paginationState.firstItem, paginationState.lastItem);
+  console.log(paginationState);
   return (
     <div className={styles.historyContainer}>
       <h2>Order history</h2>
-      <div className={styles.pagination}>
-        <Index />
-      </div>
+
+      <div className={styles.pagination}></div>
       <div className={styles.historyGrid}>
         {orderHistory &&
           orderHistorySlice.map((element) => {
@@ -64,10 +46,14 @@ function OrderHistory() {
             );
           })}
       </div>
-      <div className={styles.pagination}>
-        <button onClick={handlePrev}>Prev</button>
-        <button onClick={handleNext}>Next</button>
-        <Index />
+      <div className={styles.paginationContainer}>
+        <ItemIndex data={paginationState.index} border={false} />
+
+        <IndexButtons
+          prevDisabled={paginationState.prevDisabled}
+          nextDisabled={paginationState.nextDisabled}
+          paginationDispatch={paginationDispatch}
+        />
       </div>
     </div>
   );

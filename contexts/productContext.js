@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import getProducts from "../utils/getProducts";
 
 function productReducer(state, action) {

@@ -5,6 +5,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 15px 15px;
+  padding: 2rem 2rem;
 }
 
 .historyCard {
@@ -17,4 +18,9 @@
 .pagination {
   display: block;
   width: 100%;
+}
+.paginationContainer {
+  display: flex;
+  padding: 0 2rem;
+  justify-content: space-between;
 }

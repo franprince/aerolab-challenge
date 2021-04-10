@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { userContext } from "../../../contexts/userContext";
 import fireAddPointsNotification from "../../../utils/fireAddPointsNotification";
 import styles from "./AddPoints.module.scss";

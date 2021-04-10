@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import updateUserContext from "../utils/updateUserContext";
 
 function userReducer(state, action) {

@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import styles from "./Card.module.scss";
 import Image from "next/image";
 import { userContext } from "../../../contexts/userContext";
@@ -13,7 +13,7 @@ function Card({ product }) {
     userData.userData && userData.userData.points >= product.cost;
 
   const isAnOrA = (name) =>
-    name[0].toLowerCase() === ("a" || "e" || "i" || "o" || "u") ? "an" : "a";
+    ["a", "e", "i", "o", "u"].includes(name[0].toLowerCase()) ? "an" : "a";
 
   return (
     <div className={styles.cardContainer}>

@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { productContext } from "../../../contexts/productContext";
 import ItemIndex from "../ItemIndex/ItemIndex";
 import styles from "./ContentSort.module.scss";
@@ -8,7 +8,6 @@ function ContentSort({ data }) {
 
   return (
     <div className={styles.sortingTools}>
-      <ItemIndex data={data} />
       <p className={styles.sortBy}>Sort by:</p>
       <button
         className={state.sortedBy === "mostRecent" ? styles.active : undefined}

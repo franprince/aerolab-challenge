@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import Head from "next/head";
 import styles from "../styles/User.module.scss";
 import Top from "../components/General/Top/Top";
