@@ -41,7 +41,7 @@ function GridLayout() {
             ))
           ) : (
             <div className={styles.loading}>
-              <Spinner maxWidth={200} />
+              <Spinner size={200} />
             </div>
           )}
         </div>

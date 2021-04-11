@@ -1,12 +1,8 @@
-function Spinner({ maxWidth }) {
+import Image from "next/image";
+
+function Spinner({ size }) {
   return (
-    <div>
-      <img
-        style={{ maxWidth: `${maxWidth}px` }}
-        src="/spinner.gif"
-        alt="loading data"
-      />
-    </div>
+    <Image width={size} height={size} src="/spinner.gif" alt="loading data" />
   );
 }
 

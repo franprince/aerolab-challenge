@@ -37,7 +37,7 @@ function Header() {
           {userData.status === "fullfilled" ? (
             <p>{userData.userData.points}</p>
           ) : (
-            <Spinner maxWidth="30" />
+            <Spinner size="30" />
           )}
           <Image src="/icons/coin.svg" alt="coin" height={34} width={34} />
         </div>
