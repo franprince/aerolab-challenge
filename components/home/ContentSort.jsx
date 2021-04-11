@@ -1,6 +1,5 @@
 import * as React from "react";
-import { productContext } from "../../../contexts/productContext";
-import ItemIndex from "../ItemIndex/ItemIndex";
+import { productContext } from "../../contexts/productContext";
 import styles from "./ContentSort.module.scss";
 
 function ContentSort({ data }) {

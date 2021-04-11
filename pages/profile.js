@@ -1,11 +1,11 @@
 import * as React from "react";
 import Head from "next/head";
-import styles from "../styles/User.module.scss";
-import Top from "../components/General/Top/Top";
-import Header from "../components/General/Header/Header";
-import AddPoints from "../components/ProfilePage/AddPoints/AddPoints";
-import OrderHistory from "../components/ProfilePage/OrderHistory/OrderHistory";
-import Footer from "../components/General/Footer/Footer";
+import styles from "../styles/Profile.module.scss";
+import Header from "../components/common/Header/Header";
+import Banner from "../components/common/Banner/Banner";
+import AddPoints from "../components/profile/AddPoints";
+import OrderHistory from "../components/profile/OrderHistory";
+import Footer from "../components/common/Footer/Footer";
 
 export default function Profile() {
   return (
@@ -14,8 +14,8 @@ export default function Profile() {
         <title>Aerolab rewards program - User profile</title>
       </Head>
       <main className={styles.main}>
-        <Top />
-        <Header
+        <Header />
+        <Banner
           imgUrl="/user.jpg"
           title="User Profile"
           backgroundPosition="right"

@@ -1,13 +1,12 @@
 import * as React from "react";
-import styles from "./Top.module.scss";
+import styles from "./Header.module.scss";
 import Image from "next/image";
 import { userContext } from "../../../contexts/userContext";
 import Spinner from "../Spinner/Spinner";
 import Link from "next/link";
-Link;
-function Top() {
+
+function Header() {
   const { userData, userDispatch } = React.useContext(userContext);
-  console.log(userData);
   return (
     <div className={styles.top}>
       <div className={styles.logo}>
@@ -47,4 +46,4 @@ function Top() {
   );
 }
 
-export default Top;
+export default Header;

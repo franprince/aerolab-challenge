@@ -1,13 +1,13 @@
 import * as React from "react";
-import { userContext } from "../../../contexts/userContext";
-import fireAddPointsNotification from "../../../utils/fireAddPointsNotification";
+import { userContext } from "../../contexts/userContext";
+import fireAddPointsNotification from "../../utils/fireAddPointsNotification";
 import styles from "./AddPoints.module.scss";
 
 function AddPoints() {
   const [value, setValue] = React.useState(false);
   const { userData, userDispatch } = React.useContext(userContext);
   return (
-    <div className={styles.container}>
+    <section className={styles.container}>
       <h2>Add points to your wallet</h2>
       <div className={styles.inputContainer}>
         <div className={styles.inputGroup}>
@@ -67,7 +67,7 @@ function AddPoints() {
       >
         Add points
       </button>
-    </div>
+    </section>
   );
 }
 export default AddPoints;

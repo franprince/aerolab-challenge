@@ -1,8 +1,8 @@
 import * as React from "react";
 import styles from "./Card.module.scss";
 import Image from "next/image";
-import { userContext } from "../../../contexts/userContext";
-import fireRedeemProductNotification from "../../../utils/fireRedeemProductNotification";
+import { userContext } from "../../contexts/userContext";
+import fireRedeemProductNotification from "../../utils/fireRedeemProductNotification";
 
 function Card({ product }) {
   const { userData, userDispatch } = React.useContext(userContext);

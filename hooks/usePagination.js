@@ -1,41 +1,44 @@
 import * as React from "react";
 
-const startItem = (currentPage, itemsPerPage) =>
+const firstItem = (currentPage, itemsPerPage) =>
   currentPage === 1 ? 0 : (currentPage - 1) * itemsPerPage;
 
-const nextDisabled = (startItem, itemsPerPage, totalItems) =>
-  startItem + itemsPerPage >= totalItems;
+const lastItem = (currentPage, itemsPerPage) =>
+  firstItem(currentPage, itemsPerPage) + itemsPerPage;
+
+const nextDisabled = (itemsPerPage, totalItems, currentPage) =>
+  firstItem(currentPage, itemsPerPage) + itemsPerPage >= totalItems;
 
 const prevDisabled = (currentPage) => currentPage === 1;
 
-const getStartItem = (startItem) => (startItem === 1 ? 1 : startItem + 1);
+const indexFirstItem = (currentPage, itemsPerPage) =>
+  firstItem(currentPage, itemsPerPage) === 1
+    ? 1
+    : firstItem(currentPage, itemsPerPage) + 1;
 
-const getLastItem = (startItem, itemsPerPage, totalItems) =>
-  startItem + itemsPerPage > totalItems ? totalItems : startItem + itemsPerPage;
+const indexLastItem = (currentPage, itemsPerPage, totalItems) =>
+  firstItem(currentPage, itemsPerPage) + itemsPerPage > totalItems
+    ? totalItems
+    : firstItem(currentPage, itemsPerPage) + itemsPerPage;
 
 function reducer(state, action) {
-  const { type } = action;
-  switch (type) {
+  switch (action.type) {
     case "NEXT_PAGE":
       return {
         ...state,
         currentPage: state.currentPage + 1,
-        firstItem: startItem(state.currentPage + 1, state.itemsPerPage),
-        lastItem:
-          startItem(state.currentPage + 1, state.itemsPerPage) +
-          state.itemsPerPage,
+        firstItem: firstItem(state.currentPage + 1, state.itemsPerPage),
+        lastItem: lastItem(state.currentPage + 1, state.itemsPerPage),
         nextDisabled: nextDisabled(
-          startItem(state.currentPage + 1, state.itemsPerPage),
           state.itemsPerPage,
-          state.totalItems
+          state.totalItems,
+          state.currentPage + 1
         ),
         prevDisabled: prevDisabled(state.currentPage + 1),
         index: {
-          indexFirst: getStartItem(
-            startItem(state.currentPage + 1, state.itemsPerPage)
-          ),
-          indexLast: getLastItem(
-            startItem(state.currentPage + 1, state.itemsPerPage),
+          indexFirst: indexFirstItem(state.currentPage + 1, state.itemsPerPage),
+          indexLast: indexLastItem(
+            state.currentPage + 1,
             state.itemsPerPage,
             state.totalItems
           ),
@@ -46,22 +49,18 @@ function reducer(state, action) {
       return {
         ...state,
         currentPage: state.currentPage - 1,
-        firstItem: startItem(state.currentPage - 1, state.itemsPerPage),
-        lastItem:
-          startItem(state.currentPage - 1, state.itemsPerPage) +
-          state.itemsPerPage,
+        firstItem: firstItem(state.currentPage - 1, state.itemsPerPage),
+        lastItem: lastItem(state.currentPage - 1, state.itemsPerPage),
         nextDisabled: nextDisabled(
-          startItem(state.currentPage - 1, state.itemsPerPage),
           state.itemsPerPage,
-          state.totalItems
+          state.totalItems,
+          state.currentPage - 1
         ),
         prevDisabled: prevDisabled(state.currentPage - 1),
         index: {
-          indexFirst: getStartItem(
-            startItem(state.currentPage - 1, state.itemsPerPage)
-          ),
-          indexLast: getLastItem(
-            startItem(state.currentPage - 1, state.itemsPerPage),
+          indexFirst: indexFirstItem(state.currentPage - 1, state.itemsPerPage),
+          indexLast: indexLastItem(
+            state.currentPage - 1,
             state.itemsPerPage,
             state.totalItems
           ),
@@ -73,22 +72,19 @@ function reducer(state, action) {
         ...state,
         currentPage: 1,
         firstItem: 0,
-        lastItem:
-          startItem(1, action.payload.itemsPerPage) +
-          action.payload.itemsPerPage -
-          1,
+        lastItem: lastItem(1, action.payload.itemsPerPage),
         nextDisabled: nextDisabled(
-          1,
           action.payload.itemsPerPage,
-          action.payload.totalItems
+          action.payload.totalItems,
+          1
         ),
         prevDisabled: true,
         itemsPerPage: action.payload.itemsPerPage,
         totalItems: action.payload.totalItems,
         index: {
-          indexFirst: getStartItem(startItem(1, action.payload.itemsPerPage)),
-          indexLast: getLastItem(
-            startItem(1, action.payload.itemsPerPage),
+          indexFirst: indexFirstItem(1, action.payload.itemsPerPage),
+          indexLast: indexLastItem(
+            1,
             action.payload.itemsPerPage,
             action.payload.totalItems
           ),

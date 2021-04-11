@@ -1,7 +1,7 @@
-import styles from "./Header.module.scss";
+import styles from "./Banner.module.scss";
 import Image from "next/image";
 
-function Header({ imgUrl, title, backgroundPosition }) {
+function Banner({ imgUrl, title, backgroundPosition }) {
   return (
     <div className={styles.header}>
       <h1 className={styles.title}>{title}</h1>
@@ -17,4 +17,4 @@ function Header({ imgUrl, title, backgroundPosition }) {
     </div>
   );
 }
-export default Header;
+export default Banner;

@@ -1,12 +1,12 @@
-import Card from "../Card/Card";
+import Card from "./Card";
 import styles from "./GridLayout.module.scss";
 import * as React from "react";
-import { productContext } from "../../../contexts/productContext";
-import ContentSort from "../ContentSort/ContentSort";
-import Spinner from "../../General/Spinner/Spinner";
-import usePagination from "../../../hooks/usePagination";
-import ItemIndex from "../ItemIndex/ItemIndex";
-import IndexButtons from "../ItemIndex/IndexButtons";
+import { productContext } from "../../contexts/productContext";
+import ContentSort from "./ContentSort";
+import Spinner from "../common/Spinner/Spinner";
+import usePagination from "../../hooks/usePagination";
+import ItemIndex from "../common/Paginator/ItemIndex";
+import IndexButtons from "../common/Paginator/IndexButtons";
 
 function GridLayout() {
   const { state, dispatch } = React.useContext(productContext);
@@ -16,7 +16,7 @@ function GridLayout() {
     itemsPerPage,
     totalItems
   );
-
+  console.log(paginationState);
   const paginatedData =
     state.sortedData &&
     state.sortedData.slice(paginationState.firstItem, paginationState.lastItem);
