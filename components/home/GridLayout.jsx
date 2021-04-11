@@ -16,7 +16,6 @@ function GridLayout() {
     itemsPerPage,
     totalItems
   );
-  console.log(paginationState);
   const paginatedData =
     state.sortedData &&
     state.sortedData.slice(paginationState.firstItem, paginationState.lastItem);

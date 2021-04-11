@@ -12,9 +12,7 @@ function IndexButtons({ prevDisabled, nextDisabled, paginationDispatch }) {
         disabled={prevDisabled}
       >
         <svg width="48px" height="48px" viewBox="0 0 48 48">
-          <title>arrow-left</title>
-          <desc>Created with Sketch.</desc>
-          <defs></defs>
+          <title>arrow left</title>
           <g
             id="Page-1"
             stroke="none"
@@ -52,16 +50,8 @@ function IndexButtons({ prevDisabled, nextDisabled, paginationDispatch }) {
         onClick={() => paginationDispatch({ type: "NEXT_PAGE" })}
         disabled={nextDisabled}
       >
-        <svg
-          width="48px"
-          height="48px"
-          viewBox="0 0 48 48"
-          version="1.1"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <title>arrow-up</title>
-          <desc>Created with Sketch.</desc>
-          <defs></defs>
+        <svg width="48px" height="48px" viewBox="0 0 48 48">
+          <title>arrow right</title>
           <g
             id="Page-1"
             stroke="none"
