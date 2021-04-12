@@ -51,3 +51,5 @@ La notificación para canjear el producto siempre usa el artículo apropiado seg
 <img alt="test lighthouse" src="./public/assets/lighthouse-audit.png" width="600"/>
 
 Uso el componente [Images](https://nextjs.org/docs/api-reference/next/image) de [NextJS](https://nextjs.org) para optimizar la carga de imágenes.
+
+Utilizo 2 context, uno con la información del usuario y otro con la de los productos. Esto no sólo evita que vuelva a hacer un fetch de la información cada vez que se cambia de página, sino que también hace más claro el código evitando el prop drilling.
