@@ -17,7 +17,7 @@ async function redeemProducts(productId) {
     if (redeemProduct.ok) {
       return response;
     } else {
-      throw new Error("There has been an error processing your request");
+      return response;
     }
   } catch (error) {
     console.error(error);

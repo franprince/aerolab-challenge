@@ -9,17 +9,21 @@ async function getProducts() {
       }
     );
     const products = await fetchProducts.json();
-    return {
-      sortedBy: "mostRecent",
-      sortedData: products,
-      defaultData: products,
-      status: "fullfilled",
-    };
+    if (fetchProducts.ok) {
+      return {
+        sortedBy: "mostRecent",
+        sortedData: products,
+        defaultData: products,
+        status: "fullfilled",
+      };
+    } else {
+      return {
+        status: "rejected",
+        error: error,
+      };
+    }
   } catch (error) {
-    return {
-      status: "rejected",
-      error: error,
-    };
+    console.error(error);
   }
 }
 

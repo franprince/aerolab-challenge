@@ -6,18 +6,20 @@ function updateUserContext(userDispatch) {
     type: "GET_USER",
   });
   getUserData()
-    .then((response) =>
-      userDispatch({
-        payload: { ...response },
-        type: "GET_USER_SUCCESS",
-      })
-    )
-    .catch((error) =>
-      userDispatch({
-        payload: { ...error },
-        type: "GET_USER_FAIL",
-      })
-    );
+    .then((response) => {
+      if (response.ok) {
+        userDispatch({
+          payload: { ...response },
+          type: "GET_USER_SUCCESS",
+        });
+      } else {
+        userDispatch({
+          payload: { ...response },
+          type: "GET_USER_FAIL",
+        });
+      }
+    })
+    .catch((error) => console.error(error));
 }
 
 export default updateUserContext;
