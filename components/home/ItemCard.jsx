@@ -1,5 +1,5 @@
 import * as React from "react";
-import styles from "./Card.module.scss";
+import styles from "./ItemCard.module.scss";
 import Image from "next/image";
 import { userContext } from "../../contexts/userContext";
 import fireRedeemProductNotification from "../../utils/fireRedeemProductNotification";

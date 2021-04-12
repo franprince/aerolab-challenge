@@ -1,8 +1,8 @@
-import Card from "./Card";
-import styles from "./GridLayout.module.scss";
+import ItemCard from "./ItemCard";
+import styles from "./ItemList.module.scss";
 import * as React from "react";
 import { productContext } from "../../contexts/productContext";
-import ContentSort from "./ContentSort";
+import ItemSort from "./ItemSort";
 import Spinner from "../common/Spinner/Spinner";
 import usePagination from "../../hooks/usePagination";
 import ItemIndex from "../common/Paginator/ItemIndex";
@@ -23,7 +23,7 @@ function GridLayout() {
     <>
       <div className={styles.paginationContainer}>
         <ItemIndex data={paginationState.index} border={true} />
-        <ContentSort />
+        <ItemSort />
         <IndexButtons
           prevDisabled={paginationState.prevDisabled}
           nextDisabled={paginationState.nextDisabled}
@@ -36,7 +36,7 @@ function GridLayout() {
           {state.status === "fullfilled" ? (
             state.sortedData &&
             paginatedData.map((product) => (
-              <Card key={product._id} product={product} />
+              <ItemCard key={product._id} product={product} />
             ))
           ) : (
             <div className={styles.loading}>

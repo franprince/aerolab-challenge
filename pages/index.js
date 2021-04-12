@@ -2,7 +2,7 @@ import Head from "next/head";
 import styles from "../styles/Home.module.scss";
 import Header from "../components/common/Header/Header";
 import Banner from "../components/common/Banner/Banner";
-import GridLayout from "../components/home/GridLayout";
+import ItemList from "../components/home/ItemList";
 import Footer from "../components/common/Footer/Footer";
 export default function Home() {
   return (
@@ -18,7 +18,7 @@ export default function Home() {
           backgroundPosition="right"
         />
         <div className={styles.container}>
-          <GridLayout />
+          <ItemList />
         </div>
       </main>
       <Footer />

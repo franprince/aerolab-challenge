@@ -1,8 +1,8 @@
 import * as React from "react";
 import { productContext } from "../../contexts/productContext";
-import styles from "./ContentSort.module.scss";
+import styles from "./ItemSort.module.scss";
 
-function ContentSort({ data }) {
+function ContentSort() {
   const { state, dispatch } = React.useContext(productContext);
 
   return (
